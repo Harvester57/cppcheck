@@ -14,20 +14,20 @@ jobs:
     steps:
     - name: Build Fuzzers
       id: build
-      uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
+      uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@a0ac9cb62cbbbec7fe9a795ce5eab043f4564f77 # master
       with:
         oss-fuzz-project-name: 'cppcheck'
         dry-run: false
         language: c++
     - name: Run Fuzzers
-      uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@master
+      uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@a0ac9cb62cbbbec7fe9a795ce5eab043f4564f77 # master
       with:
         oss-fuzz-project-name: 'cppcheck'
         fuzz-seconds: 300
         dry-run: false
         language: c++
     - name: Upload Crash
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
       if: failure() && steps.build.outcome == 'success'
       with:
         name: artifacts

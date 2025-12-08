@@ -16,3 +16,13 @@ updates:
         applies-to: version-updates
         patterns:
         - "*"
+
+  - package-ecosystem: pip
+    directory: /htmlreport
+    schedule:
+      interval: daily
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: daily
