@@ -68,33 +68,17 @@ jobs:
           key: ${{ runner.os }}-scriptcheck-cppcheck-${{ github.sha }}
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           check-latest: true
+          cache: pip
+          pip-install: pip natsort pexpect pylint unittest2 pytest pytest-xdist pygments requests psutil setuptools shellcheck-py
 
       - name: Install missing software on ubuntu
         run: |
           sudo apt-get update
           sudo apt-get install tidy libxml2-utils
-
-      - name: Install missing software on ubuntu (Python 3)
-        run: |
-          # shellcheck cannot be installed via pip
-          # ERROR: Could not find a version that satisfies the requirement shellcheck (from versions: none)
-          # ERROR: No matching distribution found for shellcheck
-          sudo apt-get install shellcheck
-          python -m pip install pip --upgrade
-          python -m pip install natsort
-          python -m pip install pexpect
-          python -m pip install 'pylint<=3.3.0'
-          python -m pip install unittest2
-          python -m pip install pytest
-          python -m pip install pytest-xdist
-          python -m pip install pygments
-          python -m pip install requests
-          python -m pip install psutil
-          python -m pip install setuptools
 
       - name: run Shellcheck
         if: matrix.python-latest

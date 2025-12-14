@@ -93,10 +93,12 @@ jobs:
 
       - name: Set up Python
         if: matrix.config == 'release'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.14'
           check-latest: true
+          pip-install: pip pytest pytest-timeout pytest-xdist psutil pytest-custom_exit_code
+          cache: pip
 
       - name: Set up Visual Studio environment
         uses: ilammy/msvc-dev-cmd@v1
@@ -131,16 +133,6 @@ jobs:
           copy pcre.lib ..\externals\pcre64.lib || exit /b !errorlevel!
         env:
           CL: /MP
-
-      - name: Install missing Python packages
-        if: matrix.config == 'release'
-        run: |
-          python -m pip install pip --upgrade || exit /b !errorlevel!
-          python -m pip install pytest || exit /b !errorlevel!
-          python -m pip install pytest-custom_exit_code || exit /b !errorlevel!
-          python -m pip install pytest-timeout || exit /b !errorlevel!
-          python -m pip install pytest-xdist || exit /b !errorlevel!
-          python -m pip install psutil || exit /b !errorlevel!
 
       # TODO: build with CMake
 

@@ -37,10 +37,12 @@ jobs:
           key: ${{ github.workflow }}-${{ github.job }}-${{ matrix.os }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.14'
           check-latest: true
+          pip-install: pip pytest pytest-timeout pytest-xdist psutil
+          cache: pip
 
       - name: Install missing software on ubuntu
         run: |
@@ -62,14 +64,6 @@ jobs:
           modules: 'qtcharts'
           setup-python: 'false'
           cache: true
-
-      - name: Install missing Python packages
-        run: |
-          python3 -m pip install pip --upgrade
-          python3 -m pip install pytest
-          python3 -m pip install pytest-timeout
-          python3 -m pip install pytest-xdist
-          python3 -m pip install psutil
 
       - name: CMake
         run: |
