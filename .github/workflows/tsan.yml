@@ -5,7 +5,7 @@ name: thread sanitizer
 on:
   push:
     branches:
-      - 'main'
+      - '*'
       - 'releases/**'
       - '2.*'
     tags:
