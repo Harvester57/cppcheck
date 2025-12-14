@@ -5,7 +5,7 @@ name: scriptcheck
 on:
   push:
     branches:
-      - 'main'
+      - '*'
       - 'releases/**'
       - '2.*'
     tags:
