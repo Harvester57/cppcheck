@@ -38,7 +38,7 @@ jobs:
           persist-credentials: false
 
       - name: Set up MSYS2
-        uses: msys2/setup-msys2@fb197b72ce45fb24f17bf3f807a388985654d1f2 # v2.29.0
+        uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
         with:
           release: false # use pre-installed
           # TODO: install mingw-w64-x86_64-make and use mingw32.make instead - currently fails with "Windows Subsystem for Linux has no installed distributions."
